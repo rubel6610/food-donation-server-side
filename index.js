@@ -275,7 +275,7 @@ app.get("/donations/verified", async (req, res) => {
   const result = await donationsCollection.find(filter).toArray();
   res.send(result);
 });
-app.get("/donation/:id", verifyFbToken, async (req, res) => {
+app.get("/donation/:id", async (req, res) => {
   const id = req.params.id;
   const filter = { _id: new ObjectId(id) };
   const result = await donationsCollection.findOne(filter);
@@ -536,7 +536,7 @@ app.post("/reviews", async (req, res) => {
   const result = await reviewsCollection.insertOne(reviewData);
   res.send(result);
 });
-app.get("/reviews/:id", verifyFbToken, async (req, res) => {
+app.get("/reviews/:id", async (req, res) => {
   const id = req.params.id;
   const filter = { donationId: id };
   const result = await reviewsCollection
